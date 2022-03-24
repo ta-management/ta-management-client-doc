@@ -1,0 +1,25 @@
+site_name: TA Management Client Documentation
+theme:
+  name: material
+  logo: ua-logo.svg
+  palette: 
+    scheme: ualberta
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+nav:
+    - Admin: index.md
+    - Deployment: deployment.md
+
+extra:
+  generator: false
+
+markdown_extensions:
+  - meta
+
+extra_css:
+  - css/extra.css
+
+copyright: Copyright &copy; 2022 TA Management
