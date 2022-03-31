@@ -1,4 +1,4 @@
-site_name: TA Management Client Documentation
+site_name: TA Management Documentation
 theme:
   name: material
   logo: ua-logo.svg
@@ -16,6 +16,9 @@ nav:
 
 extra:
   generator: false
+  social:
+      - icon: fontawesome/solid/globe
+        link: https://ua-compsci-ta.ca
 
 markdown_extensions:
   - meta
@@ -23,4 +26,6 @@ markdown_extensions:
 extra_css:
   - css/extra.css
 
-copyright: Copyright &copy; 2022 TA Management
+
+
+copyright: Copyright &copy; 2022 TA Management System
