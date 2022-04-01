@@ -2,6 +2,7 @@ site_name: TA Management Documentation
 theme:
   name: material
   logo: ua-logo.svg
+  favicon: favicon.png
   palette: 
     scheme: ualberta
   features:
