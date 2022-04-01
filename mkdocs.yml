@@ -10,7 +10,6 @@ theme:
     - navigation.tabs.sticky
 
 nav:
-    - Student: student.md
     - Admin: index.md
     - Deployment: deployment.md
 
@@ -28,4 +27,4 @@ extra_css:
 
 
 
-copyright: Copyright &copy; 2022 TA Management System
+copyright: Copyright &copy; 2022 TA Management System, Department of Computing Science

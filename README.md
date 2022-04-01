@@ -1,4 +1,2 @@
-# ta-management-client-doc
-TA Management Client Documentation
-
-https://docs.ua-compsci-ta.ca/
+# TA Management Client Documentation
+- Push to main and it will be automatically deployed to https://docs.ua-compsci-ta.ca
