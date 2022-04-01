@@ -26,6 +26,9 @@ markdown_extensions:
 extra_css:
   - css/extra.css
 
-
+plugins:
+    - search: {}
+    - encryptcontent:
+        global_password: 4A4W7ygxTtS*%m3h&7b*
 
 copyright: Copyright &copy; 2022 TA Management System, Department of Computing Science
