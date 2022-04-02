@@ -1,4 +1,4 @@
-site_name: TA Management Documentation
+site_name: TA Management Deployment Documentation
 theme:
   name: material
   logo: ua-logo.svg
@@ -11,8 +11,8 @@ theme:
     - navigation.tabs.sticky
 
 nav:
-    - Admin: index.md
-    - Deployment: deployment.md
+    - Frontend: index.md
+    - Backend: backend.md
 
 extra:
   generator: false
