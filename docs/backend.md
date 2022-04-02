@@ -2,6 +2,8 @@
 # Deployment for Backend
 
 ## Project Installation Location
+
+#### Copy the project directory into
 `/home/ubuntu/ta-management/`
 
 ## Operating System Requirements
@@ -49,6 +51,12 @@
 
 #### Install these Python packages in your virtual environment
 `pip install django gunicorn psycopg2-binary` 
+
+#### Move to backend directory
+`cd ..`
+
+#### Install packages from requirements.txt
+`pip install -r requirement.txt`
 
 ## Step 4 — Configuring the Django Project
 
@@ -111,6 +119,9 @@ ListenStream=/run/gunicorn.sock
 [Install]
 WantedBy=sockets.target
 ```
+
+#### Add ubuntu to www-data group
+`sudo usermod -a -G www-data ubuntu`
 
 #### Create and open a systemd service file for Gunicorn
 `sudo nano /etc/systemd/system/gunicorn.service`
