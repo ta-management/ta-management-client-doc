@@ -31,15 +31,4 @@ markdown_extensions:
 extra_css:
   - css/extra.css
 
-plugins:
-    - search: {}
-    - encryptcontent:
-        title_prefix: ''
-        placeholder: 'Provide password and press decrypt'
-        encryption_info_message: 'Contact csta@ualberta.ca for access to this page'
-        global_password: 4A4W7ygxTtS*%m3h&7b*
-        password_button: True
-        remember_password: True
-        default_expire_dalay: 3
-
 copyright: Copyright &copy; 2022 TA Management System, Department of Computing Science
