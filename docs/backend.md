@@ -1,25 +1,23 @@
----
-hide:
-  - navigation
----
 
 # Deployment for Backend
 
-# Copy the project directory to
-/home/ubuntu/ta-management/
+## Project Installation Location
+`/home/ubuntu/ta-management/`
 
-# Operating System Requirements
-- Ubuntu 18.04 LTS
-- Ubuntu 20.04 LTS
+## Operating System Requirements
+- [Ubuntu 18.04.6 LTS](https://releases.ubuntu.com/18.04/)
+- [Ubuntu 20.04.04 LTS](https://ubuntu.com/download/desktop)
 
-# Step 1 — Installing Packages from the Ubuntu Repositories
+---
+
+## Step 1 — Installing Packages from the Ubuntu Repositories
 #### Download the latest package information
 `sudo apt update` 
 #### Install these packages
 `sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl` 
 
 
-# Step 2 — Creating the PostgreSQL Database and User
+## Step 2 — Creating the PostgreSQL Database and User
 #### Login to PostgreSQL
 `sudo -u postgres psql` 
 #### Create a database
@@ -35,7 +33,7 @@ hide:
 #### Give new user access to administer your new database
 `GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;` 
 
-# Step 3 — Creating a Python Virtual Environment using venv for your Project
+## Step 3 — Creating a Python Virtual Environment using venv for your Project
 
 #### Upgrade pip
 `sudo -H pip3 install --upgrade pip` 
@@ -52,11 +50,15 @@ hide:
 #### Install these Python packages in your virtual environment
 `pip install django gunicorn psycopg2-binary` 
 
-# Step 4 — Configuring the Django Project
+## Step 4 — Configuring the Django Project
+
+#### Open settings.py
 `sudo vim ~/ta-management/backend/ta_sys/ta_sys/settings.py`
 
+#### Add the database configuration
+
 ```
-. . .
+settings.py
 
 DATABASES = {
     'default': {
@@ -68,10 +70,9 @@ DATABASES = {
         'PORT': '',
     }
 }
-. . .
 ```
 
-# Step 5 - Completing the Initial Project Setup
+## Step 5 - Completing the Initial Project Setup
 #### Make migrations
 `(env) ~/ta-management/backend/ta_sys/manage.py makemigrations` 
 
@@ -81,7 +82,7 @@ DATABASES = {
 #### Create an administrative user for the project
 `(env) ~/ta-management/backend/ta_sys/manage.py createsuperuser`
 
-# Step 6 — Testing Gunicorn’s Ability to Serve the Project
+## Step 6 — Testing Gunicorn’s Ability to Serve the Project
 
 #### Move into project directory
 `(env) cd ta-management/backend/ta_sys`
@@ -92,7 +93,7 @@ DATABASES = {
 #### Deactivate the virtual environment
 `(env) deactivate` 
 
-# Step 7 — Creating systemd Socket and Service Files for Gunicorn
+## Step 7 — Creating systemd Socket and Service Files for Gunicorn
 
 
 #### Create and open a systemd socket file
@@ -115,6 +116,8 @@ WantedBy=sockets.target
 `sudo nano /etc/systemd/system/gunicorn.service`
 
 ```
+/etc/systemd/system/gunicorn.service
+
 [Unit]
 Description=gunicorn daemon
 Requires=gunicorn.socket
@@ -140,7 +143,7 @@ WantedBy=multi-user.target
 #### Enable the Gunicorn Socket
 `sudo systemctl enable gunicorn.socket`
 
-# Step 8 — Checking for the Gunicorn Socket File
+## Step 8 — Checking for the Gunicorn Socket File
 
 #### Check the status of the process to find out whether it was able to start
 `sudo systemctl status gunicorn.socket`
@@ -175,7 +178,7 @@ ubuntu@ta-management-final:~$ sudo journalctl -u gunicorn.socket
 Mar 27 22:29:33 ta-management-final systemd[1]: Listening on gunicorn socket.
 ```
 
-# Step 9 — Testing Socket Activation
+## Step 9 — Testing Socket Activation
 
 #### Check the status
 `sudo systemctl status gunicorn`
@@ -229,7 +232,7 @@ Output
 #### Restart the Gunicorn process
 `sudo systemctl restart gunicorn`
 
-# Configure Nginx to Proxy Pass to Gunicorn
+## Step 10 - Configure Nginx to Proxy Pass to Gunicorn
 
 #### Open a new server block in Nginx’s sites-available directory
 
@@ -264,6 +267,13 @@ server {
 #### Test the Nginx configuration for syntax errors
 `sudo nginx -t`
 
+```
+Output
+
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
 #### If there are no errors, restart Nginx
 `sudo systemctl restart nginx`
 
@@ -273,17 +283,21 @@ server {
 #### Allow normal traffic on ports 80 and 443
 `sudo ufw allow 'Nginx Full'`
 
-# For updates to Django Application
+---
+
+## For updates to Django Application
 `sudo systemctl restart gunicorn`
 
-# For changes in Gunicorn socket or service files
+## For changes in Gunicorn socket or service files
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart gunicorn.socket gunicorn.service
 ```
 
-# For changes in Nginx server block configuration
+## For changes in Nginx server block configuration
 `sudo nginx -t && sudo systemctl restart nginx`
 
-Reference: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04)
+## Reference
+
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04)
 
