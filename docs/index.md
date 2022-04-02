@@ -25,14 +25,14 @@ This guide assumes the backend deployment instructions were executed first.
 
 `sudo nano /etc/nginx/sites-available/react`
 
-#### Specify that the block should listen on port 80, the location of static assets, and information about the favicon
+#### Specify server block information
 
 ```
 /etc/nginx/sites-available/react
 
 server {
     listen 80 default_server;
-	  listen [::]:80 default_server;
+    listen [::]:80 default_server;
 
     root /home/ubuntu/ta-management/frontend/build;
     index index.html index.htm index.nginx-debian.html;
