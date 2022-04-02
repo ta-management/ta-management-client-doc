@@ -7,8 +7,13 @@ theme:
     scheme: ualberta
   features:
     - navigation.instant
+    - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.sections
+    - toc.integrate
+    - navigation.indexes
 
 nav:
     - Frontend: index.md
